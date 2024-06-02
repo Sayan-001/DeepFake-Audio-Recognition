@@ -1,6 +1,8 @@
+io
 numpy
 matplotlib
 tensorflow
+soundfile
 sklearn
 librosa
 

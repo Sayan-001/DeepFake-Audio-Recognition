@@ -85,7 +85,7 @@ with col2:
             st.success("Analysis completed!")
             
 with col1:
-    st.image(".\images\audio.jpg")
+    st.image("./images/audio.jpg")
     st.markdown("**Description**")
     st.write("""This is a simple DeepFake Audio Recognization app. It uses a 
                 Convolutional Neural Network to predict whether the audio is real or fake. 

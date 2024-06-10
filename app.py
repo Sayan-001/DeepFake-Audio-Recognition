@@ -40,15 +40,14 @@ def create_dataset(y):
 
 st.title("DeepFake Audio Recognization")
 
-col1, _, col2 = st.columns((5, 1, 4))
+col1, _, col2 = st.columns((4, 1, 5))
 
-with col1:
+with col2:
     audio_file = st.file_uploader("Upload an audio file (Duration must be atleast 1.5 seconds):", type=["wav", "mp3", "m4a"])
     
     if audio_file is not None:
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='audio/mp3')
-        st.toast("Audio file uploaded successfully!")
         
         y = load_audio(audio_bytes)
         
@@ -85,7 +84,7 @@ with col1:
             
             st.success("Analysis completed!")
             
-with col2:
+with col1:
     st.image(r".\images\audio.jpg")
     st.markdown("**Description**")
     st.write("""This is a simple DeepFake Audio Recognization app. It uses a 
@@ -97,7 +96,8 @@ with col2:
                 which corresponds to a 64x65 matrix. The model then predicts the probability of the
                 audio being fake. If the probability is greater than 0.5, the model predicts the audio
                 as fake. Otherwise, it predicts the audio as real.""")
-    st.write("Total model parameters: ~1.8M")
+    st.write("Total model parameters: ~1.8 M")
+    st.write("Model Size: 7.83 MB")
     st.markdown("**Limitations**")
     st.write("""However, the model is only capable to the extent of the data it was trained on.
                 It is not perfect and may not predict correctly to unforeseen data on the internet.

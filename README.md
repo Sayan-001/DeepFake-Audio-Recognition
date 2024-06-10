@@ -15,8 +15,11 @@ The model is trained on this Kaggle Dataset: [dataset](https://www.kaggle.com/da
 ## Model Specifications
 
 Size of model: **7.83 MB**
+
 No. of model parameters: **~1.8 M**
 
 ## Limitations
 
-The model is light-weight and trained on a small portion of the dataset. Hence its accuracy to unforeseen data is very limited. It is still a work in progress.
+The model is light-weight and trained on a small portion of the dataset. Hence its accuracy to unforeseen data is very limited. It is still a work in progress, and hence, the size, data and features can be extended with time.
+
+## Deployment

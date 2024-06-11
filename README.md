@@ -23,3 +23,7 @@ No. of model parameters: **~1.8 M**
 The model is light-weight and trained on a small portion of the dataset. Hence its accuracy to unforeseen data is very limited. It is still a work in progress, and hence, the size, data and features can be extended with time.
 
 ## Deployment
+
+The app is deployed on Streamlit Cloud.
+
+<https://deepfake-audio-recognition.streamlit.app>

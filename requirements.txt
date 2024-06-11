@@ -1,8 +1,7 @@
-io
 numpy
 matplotlib
 tensorflow
 soundfile
-sklearn
+scikit-learn
 librosa
 

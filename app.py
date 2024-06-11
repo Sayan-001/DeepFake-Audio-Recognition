@@ -9,7 +9,7 @@ from tensorflow.keras.models import load_model
 
 st.set_page_config(page_title="DeepFake Audio Recognization", page_icon="🎵", layout="wide")
 
-model = load_model('./models/DeepFakeDetector_V1.h5')
+model = load_model('./models/DeepFake_Detector_5s_128mels.h5')
 
 def load_audio(audio_bytes):
     data, _ = sf.read(io.BytesIO(audio_bytes))
@@ -19,16 +19,16 @@ def load_audio(audio_bytes):
     return y
 
 def extract_mel_spectrogram(y):
-    spectrogram = np.abs(lb.power_to_db(lb.feature.melspectrogram(y=y, n_mels=64), ref=np.max)) / 80
+    spectrogram = np.abs(lb.power_to_db(lb.feature.melspectrogram(y=y, n_mels=128), ref=np.max)) / 80
     return spectrogram
 
 def create_dataset(y):
     sr = 22050
-    duration = 1.5
+    duration = 5
     intervals = range(0, len(y), int(sr*duration))
     
     try:
-        X = np.zeros((len(intervals)-1, 64, 65), dtype=np.float32)
+        X = np.zeros((len(intervals)-1, 128, 216), dtype=np.float32)
     except ValueError:
         return None
     
@@ -70,6 +70,7 @@ with col2:
                 
             pred_mean = np.mean(predictions)
             prediction = "Fake" if pred_mean > 0.5 else "Real"
+            
             end = time.perf_counter()
             
             st.markdown("---")
@@ -81,24 +82,35 @@ with col2:
                 st.metric("Real Strength", f"{1-pred_mean: .3f}")
             with col13:
                 st.metric("Prediction", prediction)
+                
+            col11, col12 = st.columns((1, 1))
+            
+            with col11:
+                st.metric("Total Time Taken", f"{end-start: .3f} s")
+            
+            with col12:
+                st.metric("Mel Spectrograms Analyzed", len(X))
+                
+            
             
             st.success("Analysis completed!")
+            st.markdown("---")
             
 with col1:
-    st.image(r".\images\audio.jpg")
+    st.image(r"./images/audio.jpg")
     st.markdown("**Description**")
     st.write("""This is a simple DeepFake Audio Recognization app. It uses a 
                 Convolutional Neural Network to predict whether the audio is real or fake. 
                 The model was trained on a Kaggle dataset of real and fake audio files. 
                 The model has an test accuracy of ~95%.""")
     st.markdown("**How it works**")
-    st.write("""The model accepts a mel spectrogram sample of 64 mels and duration of 1.5 seconds,
-                which corresponds to a 64x65 matrix. The model then predicts the probability of the
+    st.write("""The model accepts a mel spectrogram sample of 128 mels and duration of 5 seconds,
+                which corresponds to a 128x216 matrix. The model then predicts the probability of the
                 audio being fake. If the probability is greater than 0.5, the model predicts the audio
                 as fake. Otherwise, it predicts the audio as real.""")
-    st.write("Total model parameters: ~1.8 M")
-    st.write("Model Size: 7.83 MB")
+    st.write("Total model parameters: ~8 M")
+    st.write("Used Model Size: ~60 MB")
     st.markdown("**Limitations**")
     st.write("""However, the model is only capable to the extent of the data it was trained on.
-                It is not perfect and may not predict correctly to unforeseen data on the internet.
+                It is not perfect and does not yet predict correctly to unforeseen data on the internet.
                 It is still a work in progress and will be improved in the future.""")

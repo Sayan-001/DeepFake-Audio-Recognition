@@ -14,9 +14,9 @@ The model is trained on this Kaggle Dataset: [dataset](https://www.kaggle.com/da
 
 ## Model Specifications
 
-Size of model: **7.83 MB**
+Size of model: **~60 MB**
 
-No. of model parameters: **~1.8 M**
+No. of model parameters: **~8 M**
 
 ## Limitations
 

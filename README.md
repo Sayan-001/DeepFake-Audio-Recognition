@@ -10,8 +10,8 @@ The model accepts mel spectrograms of 128 mels and 5.0 seconds duration (matrix 
 
 ## Dataset
 
-The model is trained on this [Kaggle Dataset](https://www.kaggle.com/datasets/birdy654/deep-voice-deepfake-voice-recognition)
-It contains Real(8) and Transformed/DeepFake(32) audios from 8 celebrities/politicians. Due to data imbalance, model trained on all the real audios and 8 to 16 randomly chosen deepfakes.
+The model is trained on the [Kaggle Dataset](https://www.kaggle.com/datasets/birdy654/deep-voice-deepfake-voice-recognition).
+It contains Real (8) and Transformed/DeepFake (32) audios from 8 celebrities/politicians. Due to data imbalance, model trained on all the real audios and 8 to 16 randomly chosen deepfakes.
 
 ## Model Specifications
 
@@ -21,7 +21,7 @@ No. of model parameters: **~8 M**
 
 ## Limitations
 
-The model is light-weight and trained on a small portion of the dataset. Hence its accuracy to unforeseen data is very limited. It is still a work in progress, and hence, the size, data and features can be extended with time. Current capacity of the model is quite constrained. 
+The model is light-weight and trained on a small portion of the dataset. Hence its accuracy to unforeseen data is very limited. It is still a work in progress, and hence, the size, data and features can be extended with time. Current capacity of the model is quite constrained. The model cannot accept audios with duration less than 5 seconds.
 
 ## Deployment
 
